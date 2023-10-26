@@ -20,9 +20,8 @@ const horse = "VzRtb1JMdWhOUWZ0"
             response.json()
     .then(function (json) {
         console.log(json);
-        const outputEl = document.createElement("div");
+        const outputEl = document.getElementById("chatgpt-output");
         outputEl.textContent =json.choices[0].message.content;
-        document.body.append(outputEl);
     });
     }
     });
