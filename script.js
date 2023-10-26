@@ -13,7 +13,7 @@ function getWeatherText(temp, wind, desc, rain) {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: "Bearer " + atob(cart) + (4 * 2) // + atob(horse)
+                Authorization: "Bearer " + atob(cart) + (4 * 2) + atob(horse)
             },
                 }
     ).then(function (response) {
