@@ -3,17 +3,17 @@ const horse = "VzRtb1JMdWhOUWZ0"
 
 // Code adapted from https://stackoverflow.com/questions/74944407/using-fetch-to-call-the-openai-api-throws-error-400-you-must-provide-a-model-pa
 
-function getWeatherText(temp, conditions, wind, desc, rain) {
+function getWeatherText(temp, wind, desc, rain) {
     fetch(`https://api.openai.com/v1/chat/completions`,
         {
             body: JSON.stringify({model: "gpt-3.5-turbo", messages: [
-                {role: "system", content: "You are a helpless assistant."},
-                {role: "user", content: `Write a weather report for these conditions: temperature: ${temp} wind: ${wind} description: ${desc} percent chance of rain: ${rain}`} // update to take string interpolation inputs of weather data points (temp, conditions, etc) to create forecast.txt from
+                {role: "system", content: "You are a helpful assistant who speaks like a pirate."},
+                {role: "user", content: `Write a weather report for these conditions: temperature: ${temp} wind: ${wind} description: ${desc} percent chance of rain: ${rain}`}
                 ], temperature: 1}),
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: "Bearer " + atob(cart) + (4 * 2) + atob(horse)
+                Authorization: "Bearer " + atob(cart) + (4 * 2) // + atob(horse)
             },
                 }
     ).then(function (response) {
@@ -28,4 +28,4 @@ function getWeatherText(temp, conditions, wind, desc, rain) {
     });
 }
 
-getWeatherText(45, "Partially Cloudy", "12mph NE", "Partially Cloudy", "42%")
+getWeatherText(45, "12mph NE", "Partially Cloudy", "42%")
