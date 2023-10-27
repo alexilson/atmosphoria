@@ -13,3 +13,5 @@ WHEN I select the area
 THEN I am given an option of how it is voiced to me
 WHEN I select which voice to read to me the forecast
 THEN I am read the forecast in that selected voice
+WHEN I selected the area
+THEN I am given a fun fact or an activity

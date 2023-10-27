@@ -3,11 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+
     <title>Document</title>
 </head>
 <body>
+    <button id="get-chat">Click Here For ChatGPT Text</button>
     <div id="chatgpt-output">
-        Loading, please wait...
+    </div>
+
+    <!-- to be switched over to start html page once added -->
+    <div>
+        <label for="accent">Choose an accent!</label>
+        <select id="accent" name="accent">
+          <option value="Option 1">Option 1</option>
+          <option value="Option 2">Option 2</option>
+          <option value="Option 3">Option 3</option>
+          <option value="Option 4">Option 4</option>
+        </select>
+      </form>
+    </div>
+    <div>
+        <form>
+            <label for="location">Location:</label><br>
+            <input type="text" id="location" name="location"><br>
+        </form>
     </div>
     <script src="script.js"></script>
 </body>
