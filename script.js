@@ -33,3 +33,7 @@ function getWeatherText(personality, temp, wind, desc, rain) {
 buttonEl.addEventListener("click", function() {
     getWeatherText("a pirate", 45, "12mph NE", "Partially Cloudy", "42%");
 });
+
+getLocationData() {
+    let locationData = getElementById("")
+}
