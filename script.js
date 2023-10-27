@@ -1,9 +1,12 @@
-const cart = "c2stN1FwaWZtWDJzZXlscEl6bktreUNUM0JsYmtGSjV4dFlQSWU="
-const horse = "VzRtb1JMdWhOUWZ0"
+const cart = "c2stN1FwaWZtWDJzZXlscEl6bktreUNUM0JsYmtGSjV4dFlQSWU=";
+const horse = "VzRtb1JMdWhOUWZ0";
+const buttonEl = document.getElementById('get-chat');
+const outputEl = document.getElementById("chatgpt-output");
 
 // Code adapted from https://stackoverflow.com/questions/74944407/using-fetch-to-call-the-openai-api-throws-error-400-you-must-provide-a-model-pa
 
 function getWeatherText(personality, temp, wind, desc, rain) {
+    outputEl.textContent = "Please wait...";
     fetch(`https://api.openai.com/v1/chat/completions`,
         {
             body: JSON.stringify({model: "gpt-3.5-turbo", messages: [
@@ -20,7 +23,6 @@ function getWeatherText(personality, temp, wind, desc, rain) {
         if (response.ok) {
             response.json()
     .then(function (json) {
-        const outputEl = document.getElementById("chatgpt-output");
         outputEl.textContent =json.choices[0].message.content;
         return json;
     });
@@ -28,4 +30,6 @@ function getWeatherText(personality, temp, wind, desc, rain) {
     });
 }
 
-getWeatherText("a pirate", 45, "12mph NE", "Partially Cloudy", "42%")
+buttonEl.addEventListener("click", function() {
+    getWeatherText("a pirate", 45, "12mph NE", "Partially Cloudy", "42%");
+});
