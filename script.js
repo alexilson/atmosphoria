@@ -29,3 +29,4 @@ function getWeatherText(temp, wind, desc, rain) {
 }
 
 getWeatherText(45, "12mph NE", "Partially Cloudy", "42%")
+
