@@ -65,3 +65,9 @@ document.getElementById("startForm").addEventListener("submit", function (event)
     event.preventDefault();
     getLocationData();
 });
+
+function getSelectedAccent() {
+    let dropdown = document.getElementById("accent")
+    let selectedAccent = dropdown.value
+    console.log(selectedAccent)
+}
