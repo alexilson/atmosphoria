@@ -30,8 +30,6 @@ function getWeatherText(personality, temp, wind, desc, rain) {
     });
 }
 
-getWeatherText(45, "12mph NE", "Partially Cloudy", "42%")
-
 const weatherApiKey = "0342114cc7d6945eec750a7ba15b3f3d"
 
 function getWeatherFromZip(zipCode) {
