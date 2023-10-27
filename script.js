@@ -29,3 +29,29 @@ function getWeatherText(temp, wind, desc, rain) {
 }
 
 getWeatherText(45, "12mph NE", "Partially Cloudy", "42%")
+
+const weatherApiKey = "0342114cc7d6945eec750a7ba15b3f3d"
+
+function getWeatherFromZip(zipCode) {
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?zip=${zipCode},us&appid=${weatherApiKey}`;
+
+    fetch(apiUrl)
+    .then((response) => {
+      if (response.status !== 200) {
+        console.error(`Error: ${response.status}`);
+        return;
+      }
+      return response.json();
+    })
+    .then((data) => {
+        
+        console.log(data);
+        
+      })
+      .catch((error) => {
+        console.error('Fetch error:', error);
+      });
+ 
+}
+
+getWeatherFromZip('78717')
