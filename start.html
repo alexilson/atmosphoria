@@ -11,8 +11,8 @@
     <h1 class="text-4xl text-blue-800 font-bold mb-4">Welcome to our App!</h1>
     
     <div>
-        <label for="accent" class:>Choose an accent!</label>
-        <select id="accent" name="accent">
+        <label for="accent" class="text-blue-600 font-bold block">Choose an accent!</label>
+        <select id="accent" name="accent" class="p-2 border rounded-md focus:outline-none">
           <option value="A Pirate">A Pirate</option>
           <option value="A Texan">A Texan</option>
           <option value="A New Yorker">A New Yorker</option>
@@ -22,14 +22,15 @@
     </div>
 
     <div>
-        <form id="startForm">
-            <label for="location">Location:</label><br>
-            <input type="text" id="location" name="location"><br>
+        <form id="startForm" class="p-4 border rounded-lg bg-white shadow-lg">
+            <label for="location" class="text-blue-600 font-bold block">Location:</label><br>
+            <input type="text" id="location" name="location" class="w-full p-2 border rounded-lg focus:outline-none"><br>
         </form>
     </div>
 
     <div>
-        <button id="btn">Click here</button>
+        <button id="btn"class="text-blue-800 text-2xl font-bold focus:outline-none">Click here</button>
+
     </div>
     <script src="./script.js"></script>
 </body>
