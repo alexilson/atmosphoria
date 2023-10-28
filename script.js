@@ -11,7 +11,7 @@ function getWeatherText(personality, temp, wind, desc, rain) {
         {
             body: JSON.stringify({model: "gpt-3.5-turbo", messages: [
                 {role: "system", content: `You are a helpful assistant who speaks like ${personality}.`},
-                {role: "user", content: `Write a weather report for these conditions: temperature: ${temp} wind: ${wind} description: ${desc} percent chance of rain: ${rain}`}
+                {role: "user", content: `Write a weather report for these conditions: temperature: ${temp} wind: ${wind} description: ${desc} `}
                 ], temperature: 1}),
             method: "POST",
             headers: {
@@ -57,7 +57,7 @@ function getWeatherFromZip(location, units = 'imperial') {
             console.log('Temperature:', temp)
             console.log('Wind', wind)
             console.log('Description', desc)
-            console.log('Rain Chance:', rain)
+            // console.log('Rain Chance:', rain)
             console.log(data)
         } else {
             console.log('No weather data available')
