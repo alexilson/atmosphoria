@@ -32,8 +32,8 @@ function getWeatherText(personality, temp, wind, desc, rain) {
 
 const weatherApiKey = "0342114cc7d6945eec750a7ba15b3f3d"
 
-function getWeatherFromZip(location) {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?zip=${location},us&appid=${weatherApiKey}`;
+function getWeatherFromZip(location, units = 'imperial') {
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?zip=${location},us&appid=${weatherApiKey}&units=${units}`;
 
     fetch(apiUrl)
     .then((response) => {
@@ -73,7 +73,7 @@ function getSelectedAccent() {
 }
 
 let clickButton = document.getElementById("btn")
-btn.addEventListener("click", function() {
+clickButton.addEventListener("click", function() {
     getLocationData();
     getSelectedAccent();
 })
