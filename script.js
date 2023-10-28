@@ -76,4 +76,5 @@ let clickButton = document.getElementById("btn")
 clickButton.addEventListener("click", function() {
     getLocationData();
     getSelectedAccent();
+    window.location.href = "index.html";
 })
