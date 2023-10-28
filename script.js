@@ -24,6 +24,7 @@ function getWeatherText(personality, temp, wind, desc, rain) {
             response.json()
     .then(function (json) {
         outputEl.textContent =json.choices[0].message.content;
+        setLocalStorage(json.choices[0].message.content)
         return json;
     });
     }
@@ -44,9 +45,24 @@ function getWeatherFromZip(location, units = 'imperial') {
       return response.json();
     })
     .then((data) => {
-        
-        console.log(data);
-        
+        if (data){
+            const temp = data.main.temp
+            const wind = {
+                speed: data.wind.speed,
+                direction: data.wind.deg,
+            }
+            const desc = data.weather[0].description
+            const rain = data.rain
+
+            console.log('Temperature:', temp)
+            console.log('Wind', wind)
+            console.log('Description', desc)
+            console.log('Rain Chance:', rain)
+            console.log(data)
+        } else {
+            console.log('No weather data available')
+        }
+
       })
       .catch((error) => {
         console.error('Fetch error:', error);
@@ -78,3 +94,28 @@ clickButton.addEventListener("click", function() {
     getSelectedAccent();
     window.location.href = "index.html";
 })
+
+function setLocalStorage(forecastResponse) {
+    
+    // create response history object in correct scope
+    const responseHistory = {}
+
+    // check if a pastResponses object exists in local storage and grab it, create it if not
+    if (localStorage.getItem('pastResponses')) {
+        const pastResponsesLS = localStorage.getItem('pastResponses');
+        const parsedresponseHistory = JSON.parse(pastResponsesLS);
+        Object.assign(responseHistory, parsedresponseHistory);  // code from Xpert
+    }
+    
+    // create timestamp of current time
+    const timestamp = dayjs().format('dddd, MMMM D[th], YYYY [at] h[:]mm[:]s a')
+
+    // add forecast response with timestamp as the key
+    responseHistory[timestamp] = forecastResponse;
+
+    // convert response object to string
+    const updatedResponseHistory = JSON.stringify(responseHistory);
+
+    // put it in local storage
+    localStorage.setItem('pastResponses', updatedResponseHistory);
+}
