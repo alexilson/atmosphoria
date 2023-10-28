@@ -103,14 +103,15 @@ function setLocalStorage(forecastResponse) {
     // check if a pastResponses object exists in local storage and grab it, create it if not
     if (localStorage.getItem('pastResponses')) {
         const pastResponsesLS = localStorage.getItem('pastResponses');
-        const responseHistory = JSON.parse(pastResponsesLS);
+        const parsedresponseHistory = JSON.parse(pastResponsesLS);
+        Object.assign(responseHistory, parsedresponseHistory);  // code from Xpert
     }
     
     // create timestamp of current time
-    const timestamp = dayjs().format('dddd, MMMM D[th], YYYY [at] h[:]mm a')
+    const timestamp = dayjs().format('dddd, MMMM D[th], YYYY [at] h[:]mm[:]s a')
 
     // add forecast response with timestamp as the key
-    responseHistory.timestamp = forecastResponse;
+    responseHistory[timestamp] = forecastResponse;
 
     // convert response object to string
     const updatedResponseHistory = JSON.stringify(responseHistory);
