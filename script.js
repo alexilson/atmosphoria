@@ -44,9 +44,24 @@ function getWeatherFromZip(location, units = 'imperial') {
       return response.json();
     })
     .then((data) => {
-        
-        console.log(data);
-        
+        if (data){
+            const temp = data.main.temp
+            const wind = {
+                speed: data.wind.speed,
+                direction: data.wind.deg,
+            }
+            const desc = data.weather[0].description
+            const rain = data.rain
+
+            console.log('Temperature:', temp)
+            console.log('Wind', wind)
+            console.log('Description', desc)
+            console.log('Rain Chance:', rain)
+            console.log(data)
+        } else {
+            console.log('No weather data available')
+        }
+
       })
       .catch((error) => {
         console.error('Fetch error:', error);
