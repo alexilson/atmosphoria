@@ -32,8 +32,8 @@ function getWeatherText(personality, temp, wind, desc, rain) {
 
 const weatherApiKey = "0342114cc7d6945eec750a7ba15b3f3d"
 
-function getWeatherFromZip(location) {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?zip=${location},us&appid=${weatherApiKey}`;
+function getWeatherFromZip(location, units = 'imperial') {
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?zip=${location},us&appid=${weatherApiKey}&units=${units}`;
 
     fetch(apiUrl)
     .then((response) => {
@@ -65,3 +65,16 @@ document.getElementById("startForm").addEventListener("submit", function (event)
     event.preventDefault();
     getLocationData();
 });
+
+function getSelectedAccent() {
+    let dropdown = document.getElementById("accent")
+    let selectedAccent = dropdown.value
+    console.log(selectedAccent)
+}
+
+let clickButton = document.getElementById("btn")
+clickButton.addEventListener("click", function() {
+    getLocationData();
+    getSelectedAccent();
+    window.location.href = "index.html";
+})
