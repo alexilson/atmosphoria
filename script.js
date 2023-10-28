@@ -71,3 +71,10 @@ function getSelectedAccent() {
     let selectedAccent = dropdown.value
     console.log(selectedAccent)
 }
+
+let clickButton = document.getElementById("btn")
+clickButton.addEventListener("click", function() {
+    getLocationData();
+    getSelectedAccent();
+    window.location.href = "index.html";
+})
