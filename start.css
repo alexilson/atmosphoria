@@ -1,0 +1,14 @@
+/* Create a CSS animation for panning */
+@keyframes panRight {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 100% 0%;
+    }
+}
+
+/* Apply the animation to the panning-image class */
+.bg-panning-image {
+    animation: panRight 20s linear infinite; /* Adjust the duration as needed */
+}
