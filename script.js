@@ -2,16 +2,17 @@ const cart = "c2stN1FwaWZtWDJzZXlscEl6bktreUNUM0JsYmtGSjV4dFlQSWU=";
 const horse = "VzRtb1JMdWhOUWZ0";
 const buttonEl = document.getElementById('get-chat');
 const outputEl = document.getElementById("chatgpt-output");
+const pastResponsesEl = document.getElementById("past-responses")
 
 // Code adapted from https://stackoverflow.com/questions/74944407/using-fetch-to-call-the-openai-api-throws-error-400-you-must-provide-a-model-pa
 
-function getWeatherText(personality, temp, wind, desc, rain) {
+function getWeatherText(personality, temp, wind, desc) {
     outputEl.textContent = "Please wait...";
     fetch(`https://api.openai.com/v1/chat/completions`,
         {
             body: JSON.stringify({model: "gpt-3.5-turbo", messages: [
                 {role: "system", content: `You are a helpful assistant who speaks like ${personality}.`},
-                {role: "user", content: `Write a weather report for these conditions: temperature: ${temp} wind: ${wind} description: ${desc} percent chance of rain: ${rain}`}
+                {role: "user", content: `Write a weather report for these conditions: temperature: ${temp} wind: ${wind} description: ${desc}`}
                 ], temperature: 1}),
             method: "POST",
             headers: {
@@ -103,14 +104,15 @@ function setLocalStorage(forecastResponse) {
     // check if a pastResponses object exists in local storage and grab it, create it if not
     if (localStorage.getItem('pastResponses')) {
         const pastResponsesLS = localStorage.getItem('pastResponses');
-        const responseHistory = JSON.parse(pastResponsesLS);
+        const parsedresponseHistory = JSON.parse(pastResponsesLS);
+        Object.assign(responseHistory, parsedresponseHistory);  // code from Xpert
     }
     
     // create timestamp of current time
-    const timestamp = dayjs().format('dddd, MMMM D[th], YYYY [at] h[:]mm a')
+    const timestamp = dayjs().format('dddd, MMMM D[th], YYYY [at] h[:]mm[:]s a')
 
     // add forecast response with timestamp as the key
-    responseHistory.timestamp = forecastResponse;
+    responseHistory[timestamp] = forecastResponse;
 
     // convert response object to string
     const updatedResponseHistory = JSON.stringify(responseHistory);
@@ -118,3 +120,15 @@ function setLocalStorage(forecastResponse) {
     // put it in local storage
     localStorage.setItem('pastResponses', updatedResponseHistory);
 }
+
+function displayPastResponses () {
+    if (localStorage.getItem('pastResponses')) {
+        const pastResponsesLS = localStorage.getItem('pastResponses')
+        const parsedResponseHistory = JSON.parse(pastResponsesLS);
+        for (let key in parsedResponseHistory) {
+            let responseTimestamp = key;
+            let responseText = parsedResponseHistory[key];
+            console.log(responseTimestamp + "\n" + responseText)
+        }
+    }
+};
