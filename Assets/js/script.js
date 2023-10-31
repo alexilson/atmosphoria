@@ -34,7 +34,7 @@ function getWeatherText(personality, temp, wind, desc) {
 
 const weatherApiKey = "0342114cc7d6945eec750a7ba15b3f3d"
 
-function getWeatherFromZip(location, units = 'imperial') {
+function getWeatherFromZip(location, units, accent) {
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?zip=${location},us&appid=${weatherApiKey}&units=${units}`;
 
     fetch(apiUrl)
@@ -54,6 +54,8 @@ function getWeatherFromZip(location, units = 'imperial') {
             }
             const desc = data.weather[0].description
             const rain = data.rain
+
+            getWeatherText(accent, temp, wind, desc)
 
             console.log('Temperature:', temp)
             console.log('Wind', wind)
@@ -107,6 +109,8 @@ function displayPastResponses () {
         }
     }
 };
+// let location = qParams
+// let accent = accentParam
 
 // assistend from XPERT Learning Assistant
 function getParametersFromUrl () {
@@ -116,5 +120,6 @@ let qParam = urlParams.get('q');
 let accentParam = urlParams.get('accent');
 console.log(qParam);
 console.log(accentParam);
+getWeatherFromZip(qParam,'imperial', accentParam)
 }
 getParametersFromUrl();
