@@ -101,9 +101,21 @@ function displayPastResponses () {
         const pastResponsesLS = localStorage.getItem('pastResponses')
         const parsedResponseHistory = JSON.parse(pastResponsesLS);
         for (let key in parsedResponseHistory) {
+
             let responseTimestamp = key;
             let responseText = parsedResponseHistory[key];
-            console.log(responseTimestamp + "\n" + responseText)
+            
+            const responseTimeStampEl = document.createElement('div');
+            responseTimeStampEl.textContent = responseTimestamp;
+            
+            const responseTextEl = document.createElement('div');
+            responseTextEl.textContent = responseText;
+            
+            // console.log(responseTimestamp + "\n" + responseText)
+            
+            const responsesEl = document.getElementById('past-responses');
+            responsesEl.append(responseTimeStampEl);
+            responsesEl.append(responseTextEl);
         }
     }
 };
@@ -118,3 +130,4 @@ console.log(qParam);
 console.log(accentParam);
 }
 getParametersFromUrl();
+displayPastResponses();
