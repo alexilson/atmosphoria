@@ -108,11 +108,13 @@ function displayPastResponses () {
     }
 };
 
+// assistend from XPERT Learning Assistant
 function getParametersFromUrl () {
-let queryString = window.location.search;
-let urlParams = new URLSearchParams(queryString);
-const qParam = urlParams.get('q');
-const accentParam = urlParams.get('accent');
+let urlString = window.location.search;
+let urlParams = new URLSearchParams(urlString);
+let qParam = urlParams.get('q');
+let accentParam = urlParams.get('accent');
 console.log(qParam);
 console.log(accentParam);
 }
+getParametersFromUrl();
