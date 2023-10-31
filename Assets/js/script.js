@@ -124,7 +124,7 @@ function displayPastResponses () {
 // let location = qParams
 // let accent = accentParam
 
-// assistend from XPERT Learning Assistant
+// assisted from XPERT Learning Assistant
 function getParametersFromUrl () {
 let urlString = window.location.search;
 let urlParams = new URLSearchParams(urlString);
