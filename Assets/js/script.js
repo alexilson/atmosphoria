@@ -107,12 +107,3 @@ function displayPastResponses () {
         }
     }
 };
-
-function getParametersFromUrl () {
-let queryString = window.location.search;
-let urlParams = new URLSearchParams(queryString);
-const qParam = urlParams.get('q');
-const accentParam = urlParams.get('accent');
-console.log(qParam);
-console.log(accentParam);
-}

@@ -1,4 +1,4 @@
-/* Create a CSS animation for panning */
+/* This gives me that panning right effect on the image */
 @keyframes panRight {
     0% {
         background-position: 0% 0%;
@@ -8,7 +8,7 @@
     }
 }
 
-/* Apply the animation to the panning-image class */
+/* this applies the panning to the image*/
 .bg-panning-image {
-    animation: panRight 20s linear infinite; /* Adjust the duration as needed */
+    animation: panRight 20s linear infinite; 
 }
