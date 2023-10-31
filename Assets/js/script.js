@@ -107,3 +107,14 @@ function displayPastResponses () {
         }
     }
 };
+
+// assistend from XPERT Learning Assistant
+function getParametersFromUrl () {
+let urlString = window.location.search;
+let urlParams = new URLSearchParams(urlString);
+let qParam = urlParams.get('q');
+let accentParam = urlParams.get('accent');
+console.log(qParam);
+console.log(accentParam);
+}
+getParametersFromUrl();
