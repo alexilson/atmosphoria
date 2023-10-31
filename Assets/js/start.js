@@ -1,6 +1,6 @@
 function getLocationData() {
     let locationEL = document.getElementById("location");
-    let locationValue = locationEL.value;
+    let locationValue = locationEL.value.trim();
     console.log(locationValue);
     // getWeatherFromZip(locationValue)
     return locationValue;
