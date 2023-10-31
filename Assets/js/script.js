@@ -47,11 +47,10 @@ function getWeatherFromZip(location, units, accent) {
     })
     .then((data) => {
         if (data){
-            const temp = data.main.temp
-            const wind = {
-                speed: data.wind.speed,
-                direction: data.wind.deg,
-            }
+            const temp = data.main.temp;
+            let windSpeed = data.wind.speed;
+            let windDirection = data.wind.deg;
+            const wind = (windSpeed, windDirection)
             const desc = data.weather[0].description
             const rain = data.rain
 
