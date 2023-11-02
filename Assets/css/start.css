@@ -18,13 +18,14 @@
     animation: panRight 20s linear infinite; 
 }
 
+/* positions the modal */
 .modal{
     display:none;
     position: fixed;
     width: 100%;
 }
 
-
+/* gives the modal a bit of styling, and centering on the page */
 .modal-content {
     background-color: white;
     text-align: center;
@@ -34,9 +35,9 @@
     border-radius: 10px;
 }
 
+/* Moves the position of the close button and gives it some styling */
 .close {
-    position:relative;
-    margin-top: -5%;
+    margin-top: -15px;
     font-size: 25px;
     font-weight: bold;
     float:right;
