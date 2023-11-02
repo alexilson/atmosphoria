@@ -3,9 +3,11 @@
     0% {
         background-position: 0% 0%;
     }
+
     50% {
         background-position: 100% 0%;
     }
+
     100% {
         background-position: 0% 0%;
     }
@@ -13,5 +15,5 @@
 
 /* this applies the panning to the image*/
 .bg-panning-image {
-    animation: panLeftRight 20s linear infinite; 
+    animation: panLeftRight 20s linear infinite;
 }
