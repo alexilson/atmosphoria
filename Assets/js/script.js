@@ -108,6 +108,7 @@ function displayPastResponses() {
         const responseKeys = Object.keys(parsedResponseHistory);
         const responseCount = responseKeys.length;
 
+        // removes oldest response
         if (responseCount > 5) {
             const responsesToRemove = responseCount - 5;
             for (let i = 0; i < responsesToRemove; ++i) {
@@ -115,10 +116,12 @@ function displayPastResponses() {
             }
         }
 
+        // displays the past responses
         for (let key in parsedResponseHistory) {
             let responseTimestamp = key;
             let responseText = parsedResponseHistory[key];
 
+            // creates a <div> to display a past response and the timestamp
             const responseTimeStampEl = document.createElement('div');
             responseTimeStampEl.textContent = responseTimestamp;
 
@@ -133,13 +136,12 @@ function displayPastResponses() {
     }
 };
 
-// let location = qParams
-// let accent = accentParam
-
 // assisted from XPERT Learning Assistant
 function getParametersFromUrl() {
     let urlString = window.location.search;
     let urlParams = new URLSearchParams(urlString);
+
+    // gets the ZipCode and Accent from the URL Search
     let qParam = urlParams.get('q');
     let accentParam = urlParams.get('accent');
     console.log(qParam);
