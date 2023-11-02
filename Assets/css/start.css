@@ -15,5 +15,33 @@
 
 /* this applies the panning to the image*/
 .bg-panning-image {
-    animation: panLeftRight 20s linear infinite;
+    animation: panRight 20s linear infinite; 
+}
+
+.modal{
+    display:none;
+    position: fixed;
+    width: 100%;
+}
+
+
+.modal-content {
+    background-color: white;
+    text-align: center;
+    margin: 15% auto;
+    padding: 20px;
+    width: 30%;
+    border-radius: 10px;
+}
+
+.close {
+    position:relative;
+    margin-top: -5%;
+    font-size: 25px;
+    font-weight: bold;
+    float:right;
+}
+
+.close:hover{
+    cursor: pointer;
 }
