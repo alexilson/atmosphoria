@@ -6,13 +6,13 @@ const pastResponsesEl = document.getElementById("past-responses")
 
 // Code adapted from https://stackoverflow.com/questions/74944407/using-fetch-to-call-the-openai-api-throws-error-400-you-must-provide-a-model-pa
 
-function getWeatherText(personality, temp, wind, desc) {
+function getWeatherText(personality, temp, windSpeed, windDirection, desc) {
     outputEl.textContent = "Please wait...";
     fetch(`https://api.openai.com/v1/chat/completions`,
         {
             body: JSON.stringify({model: "gpt-3.5-turbo", messages: [
                 {role: "system", content: `You are a helpful assistant who speaks like ${personality}.`},
-                {role: "user", content: `Write a weather report for these conditions: temperature: ${temp} wind: ${wind} description: ${desc}`}
+                {role: "user", content: `Write a weather report for these conditions: temperature: ${temp} wind speed: ${windSpeed} wind direction: ${windDirection} description: ${desc}`}
                 ], temperature: 1}),
             method: "POST",
             headers: {
@@ -48,16 +48,18 @@ function getWeatherFromZip(location, units, accent) {
     .then((data) => {
         if (data){
             const temp = data.main.temp;
-            let windSpeed = data.wind.speed;
-            let windDirection = data.wind.deg;
-            const wind = (windSpeed, windDirection)
+            const windSpeed = data.wind.speed;
+            const windDirection = data.wind.deg;
+            // const wind = ("Wind speed: ", windSpeed, "Wind direction: ", windDirection)
             const desc = data.weather[0].description
             const rain = data.rain
 
-            getWeatherText(accent, temp, wind, desc)
+            getWeatherText(accent, temp, windSpeed, windDirection, desc)
 
-            console.log('Temperature:', temp)
-            console.log('Wind', wind)
+            console.log('Temperature:', temp,)
+            // console.log('Wind', wind)
+            console.log('Wind speed', windSpeed, )
+            console.log('wind Direction', windDirection)
             console.log('Description', desc)
             console.log('Rain Chance:', rain)
             console.log(data)
