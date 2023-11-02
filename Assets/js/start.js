@@ -19,10 +19,10 @@ function getSelectedAccent() {
 }
 
 let clickButton = document.getElementById("btn")
-clickButton.addEventListener("click", function() {
+clickButton.addEventListener("click", function () {
     event.preventDefault();
     let inputLocation = getLocationData();
     let inputAccent = getSelectedAccent();
-    let urlQuery = `./index.html?q=${inputLocation}&accent=${inputAccent}`; 
+    let urlQuery = `./index.html?q=${inputLocation}&accent=${inputAccent}`;
     window.location.href = urlQuery;
 })
