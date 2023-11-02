@@ -97,29 +97,40 @@ function setLocalStorage(forecastResponse) {
     localStorage.setItem('pastResponses', updatedResponseHistory);
 }
 
-function displayPastResponses () {
+function displayPastResponses() {
     if (localStorage.getItem('pastResponses')) {
-        const pastResponsesLS = localStorage.getItem('pastResponses')
+        const pastResponsesLS = localStorage.getItem('pastResponses');
         const parsedResponseHistory = JSON.parse(pastResponsesLS);
-        for (let key in parsedResponseHistory) {
+        const responsesEl = document.getElementById('past-responses');
+        // assisted from XPERT
+        const responseKeys = Object.keys(parsedResponseHistory);
+        const responseCount = responseKeys.length;
 
+        if (responseCount > 5) {
+            const responsesToRemove = responseCount - 5;
+            for (let i = 0; i < responsesToRemove; ++i) {
+                delete parsedResponseHistory[responseKeys[i]];
+            }
+        }
+
+        for (let key in parsedResponseHistory) {
             let responseTimestamp = key;
             let responseText = parsedResponseHistory[key];
-            
+
             const responseTimeStampEl = document.createElement('div');
             responseTimeStampEl.textContent = responseTimestamp;
-            
+
             const responseTextEl = document.createElement('div');
             responseTextEl.textContent = responseText;
-            
+
             // console.log(responseTimestamp + "\n" + responseText)
-            
-            const responsesEl = document.getElementById('past-responses');
+
             responsesEl.append(responseTimeStampEl);
             responsesEl.append(responseTextEl);
         }
     }
 };
+
 // let location = qParams
 // let accent = accentParam
 
