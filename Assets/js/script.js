@@ -12,7 +12,7 @@ function getWeatherText(personality, temp, windSpeed, windDirection, desc) {
         {
             body: JSON.stringify({model: "gpt-3.5-turbo", messages: [
                 {role: "system", content: `You are a helpful assistant who speaks like ${personality}.`},
-                {role: "user", content: `Write a weather report for these conditions: temperature: ${temp} wind speed: ${windSpeed} wind direction: ${windDirection} description: ${desc}`}
+                {role: "user", content: `Write a weather report for these conditions: temperature: ${temp} wind speed: ${windSpeed} wind direction: ${windDirection} (convert to compass direction) description: ${desc}`}
                 ], temperature: 1}),
             method: "POST",
             headers: {
