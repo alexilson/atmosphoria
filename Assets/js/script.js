@@ -7,16 +7,14 @@ const currentTimestampEl = document.getElementById("current-timestamp");
 
 // Code adapted from https://stackoverflow.com/questions/74944407/using-fetch-to-call-the-openai-api-throws-error-400-you-must-provide-a-model-pa
 
-function getWeatherText(personality, temp, wind, desc) {
+function getWeatherText(personality, city, temp, windSpeed, windDirection, desc) {
     outputEl.textContent = "Please wait...";
     fetch(`https://api.openai.com/v1/chat/completions`,
         {
-            body: JSON.stringify({
-                model: "gpt-3.5-turbo", messages: [
-                    { role: "system", content: `You are a helpful assistant who speaks like ${personality}.` },
-                    { role: "user", content: `Write a weather report for these conditions: temperature: ${temp} wind: ${wind} description: ${desc}` }
-                ], temperature: 1
-            }),
+            body: JSON.stringify({model: "gpt-3.5-turbo", messages: [
+                {role: "system", content: `You are a helpful assistant who speaks like ${personality}.`},
+                {role: "user", content: `Write a weather report for these conditions:City: ${city} temperature: ${temp} wind speed: ${windSpeed} wind direction: ${windDirection} (convert to compass direction, do not say the degrees)  description: ${desc}`}
+                ], temperature: 1}),
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -41,32 +39,32 @@ function getWeatherFromZip(location, units, accent) {
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?zip=${location},us&appid=${weatherApiKey}&units=${units}`;
 
     fetch(apiUrl)
-        .then((response) => {
-            if (response.status !== 200) {
-                console.error(`Error: ${response.status}`);
-                return;
-            }
-            return response.json();
-        })
-        .then((data) => {
-            if (data) {
-                const temp = data.main.temp;
-                let windSpeed = data.wind.speed;
-                let windDirection = data.wind.deg;
-                const wind = (windSpeed, windDirection)
-                const desc = data.weather[0].description
-                const rain = data.rain
+    .then((response) => {
+      if (response.status !== 200) {
+        console.error(`Error: ${response.status}`);
+        return;
+      }
+      return response.json();
+    })
+    .then((data) => {
+        if (data){
+            const city = data.name;
+            const temp = data.main.temp;
+            const windSpeed = data.wind.speed;
+            const windDirection = data.wind.deg;
+            const desc = data.weather[0].description
 
-                getWeatherText(accent, temp, wind, desc)
+            getWeatherText(accent, city, temp, windSpeed, windDirection, desc)
 
-                console.log('Temperature:', temp)
-                console.log('Wind', wind)
-                console.log('Description', desc)
-                console.log('Rain Chance:', rain)
-                console.log(data)
-            } else {
-                console.log('No weather data available')
-            }
+            console.log('City: '. city)
+            console.log('Temperature:', temp)
+            console.log('Wind Speed', windSpeed)
+            console.log('Wind Direction', windDirection)
+            console.log('Description', desc)
+            console.log(data)
+        } else {
+            console.log('No weather data available')
+        }
 
         })
         .catch((error) => {
