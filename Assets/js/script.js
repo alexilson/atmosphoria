@@ -30,7 +30,15 @@ function getWeatherText(personality, city, temp, windSpeed, windDirection, desc)
                     return json;
                 });
         }
-    });
+        else {
+            console.error(`Error: ${response.status}`);
+            return;
+        }
+    })
+    .catch(function (error) {
+        console.error('Fetch error:', error);
+        outputEl.textContent = "Error: " + error;
+    })
 }
 
 const weatherApiKey = "0342114cc7d6945eec750a7ba15b3f3d"
