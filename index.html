@@ -1,15 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- here is the link to tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <title>Document</title>
+    <link rel="stylesheet" href="./Assets/css/start.css">
+    <title>Weather App</title>
 </head>
-<body>
-    <button id="get-chat">Click Here For ChatGPT Text</button>
-    <div id="chatgpt-output"></div>
-    <div id="past-responses"></div>
-    <script src="./Assets/js/script.js"></script>
+
+<body class="h-screen flex items-center justify-center">
+    <!--H screen selects the height to fill up the entire screen, flex is used to create a container, items-center aligns them to the center of the page vertically -->
+    <!--This is also where we initiate the image to pan both left and right and absolute inset -0 positions the image completely in the center to get the best effect out of the pan -->
+    <div class="bg-fixed bg-center bg-cover bg-no-repeat bg-panning-image absolute inset-0"
+        style="background-image: url(https://cdn.pixabay.com/photo/2016/10/20/18/35/earth-1756274_1280.jpg);">
+        <!--this flexes the body elements to the center for a polished look-->
+        <div class="flex flex-col items-center">
+            <!--Main app title, just added structure to font-->
+            <h1 class="text-4xl text-blue-800 font-bold mb-4">Welcome to our App!</h1>
+
+            <div>
+                <label for="accent" class="text-blue-600 text-2xl block font-semibold">Choose an accent</label>
+                <!--this is where i format the selection box, main functions here were rounding the edges and creating a border-->
+                <select id="accent" name="accent" class="p-4 px-1border rounded-md focus:outline-none justify-center">
+                    <option value="A Pirate">A Pirate</option>
+                    <option value="A Texan">A Texan</option>
+                    <option value="A New Yorker">A New Yorker</option>
+                    <option value="An old Englishman">An old Englishman</option>
+                </select>
+                </form>
+            </div>
+
+            <div>
+                <!--this inputs the zipe code with some structure for the font, corners and set -->
+                <form id="startForm" class="p-4 border rounded-lg bg-white shadow-lg">
+                    <label for="location" class="text-blue-600 font-bold block">Location:</label><br>
+                    <!-- This is where we set the parameters for the box, rounded the edges, and removed detail outline when being clicked -->
+                    <input type="text" id="location" name="location"
+                        class="w-full p-2 border rounded-lg focus:outline-none"><br>
+                </form>
+            </div>
+
+            <div>
+                <!--This is the styling for the button, added bold and removed detail outline when clicked-->
+                <button id="btn" class="text-blue-800 text-2xl font-bold focus:outline-none">Click here</button>
+            </div>
+            </div>
+         <div class="flex flex-col items-center">
+            <!-- div for the modal -->
+            <div id="modalContainer" class="font-xs w-full p-4 mx-auto"></div>
+        </div>
+        </div>
+    </div>
+    <script src="./Assets/js/Index.js"></script>
+
 </body>
+
 </html>
