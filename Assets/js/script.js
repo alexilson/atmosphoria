@@ -2,7 +2,8 @@ const cart = "c2stN1FwaWZtWDJzZXlscEl6bktreUNUM0JsYmtGSjV4dFlQSWU=";
 const horse = "VzRtb1JMdWhOUWZ0";
 const buttonEl = document.getElementById('get-chat');
 const outputEl = document.getElementById("chatgpt-output");
-const pastResponsesEl = document.getElementById("past-responses")
+const pastResponsesEl = document.getElementById("past-responses");
+const currentTimestampEl = document.getElementById("current-timestamp");
 
 // Code adapted from https://stackoverflow.com/questions/74944407/using-fetch-to-call-the-openai-api-throws-error-400-you-must-provide-a-model-pa
 
@@ -87,10 +88,10 @@ function setLocalStorage(forecastResponse) {
     }
 
     // create timestamp of current time
-    const timestamp = dayjs().format('dddd, MMMM D[th], YYYY [at] h[:]mm[:]s a')
+    // const timestamp = dayjs().format('dddd, MMMM D[th], YYYY [at] h[:]mm[:]s a')
 
     // add forecast response with timestamp as the key
-    responseHistory[timestamp] = forecastResponse;
+    responseHistory[currentTimestamp] = forecastResponse;
 
     // convert response object to string
     const updatedResponseHistory = JSON.stringify(responseHistory);
@@ -163,5 +164,14 @@ function getParametersFromUrl() {
     console.log(accentParam);
     getWeatherFromZip(qParam, 'imperial', accentParam)
 }
+
+
+function createTimestamp () {
+    const timestamp = dayjs().format('dddd, MMMM D[th], YYYY [at] h[:]mm[:]ss a');
+    currentTimestampEl.textContent = timestamp;
+    return timestamp;
+}
+
+const currentTimestamp = createTimestamp();
 getParametersFromUrl();
 displayPastResponses();
