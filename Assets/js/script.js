@@ -6,13 +6,13 @@ const pastResponsesEl = document.getElementById("past-responses")
 
 // Code adapted from https://stackoverflow.com/questions/74944407/using-fetch-to-call-the-openai-api-throws-error-400-you-must-provide-a-model-pa
 
-function getWeatherText(personality, temp, windSpeed, windDirection, desc) {
+function getWeatherText(personality, city, temp, windSpeed, windDirection, desc) {
     outputEl.textContent = "Please wait...";
     fetch(`https://api.openai.com/v1/chat/completions`,
         {
             body: JSON.stringify({model: "gpt-3.5-turbo", messages: [
                 {role: "system", content: `You are a helpful assistant who speaks like ${personality}.`},
-                {role: "user", content: `Write a weather report for these conditions: temperature: ${temp} wind speed: ${windSpeed} wind direction: ${windDirection} (convert to compass direction) description: ${desc}`}
+                {role: "user", content: `Write a weather report for these conditions:City: ${city} temperature: ${temp} wind speed: ${windSpeed} wind direction: ${windDirection} (convert to compass direction, do not say the degrees)  description: ${desc}`}
                 ], temperature: 1}),
             method: "POST",
             headers: {
@@ -47,21 +47,19 @@ function getWeatherFromZip(location, units, accent) {
     })
     .then((data) => {
         if (data){
+            const city = data.name;
             const temp = data.main.temp;
             const windSpeed = data.wind.speed;
             const windDirection = data.wind.deg;
-            // const wind = ("Wind speed: ", windSpeed, "Wind direction: ", windDirection)
             const desc = data.weather[0].description
-            const rain = data.rain
 
-            getWeatherText(accent, temp, windSpeed, windDirection, desc)
+            getWeatherText(accent, city, temp, windSpeed, windDirection, desc)
 
-            console.log('Temperature:', temp,)
-            // console.log('Wind', wind)
-            console.log('Wind speed', windSpeed, )
-            console.log('wind Direction', windDirection)
+            console.log('City: '. city)
+            console.log('Temperature:', temp)
+            console.log('Wind Speed', windSpeed)
+            console.log('Wind Direction', windDirection)
             console.log('Description', desc)
-            console.log('Rain Chance:', rain)
             console.log(data)
         } else {
             console.log('No weather data available')
@@ -122,8 +120,6 @@ function displayPastResponses() {
                 const responseTextEl = document.createElement('div');
                 responseTextEl.textContent = responseText;
 
-                // console.log(responseTimestamp + "\n" + responseText)
-
                 responsesEl.append(responseTimeStampEl);
                 responsesEl.append(responseTextEl);
 
@@ -150,7 +146,7 @@ function displayPastResponses() {
 };
 
 // let location = qParams
-// let accent = accentParam
+// let accent = accentParam-
 
 // assisted from XPERT Learning Assistant
 function getParametersFromUrl () {
