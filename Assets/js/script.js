@@ -5,7 +5,7 @@ const outputEl = document.getElementById("chatgpt-output");
 const pastResponsesEl = document.getElementById("past-responses");
 const currentTimestampEl = document.getElementById("current-timestamp");
 
-// Code adapted from https://stackoverflow.com/questions/74944407/using-fetch-to-call-the-openai-api-throws-error-400-you-must-provide-a-model-pa
+// Code adapted from: https://stackoverflow.com/questions/74944407/using-fetch-to-call-the-openai-api-throws-error-400-you-must-provide-a-model-pa
 
 function getWeatherText(personality, city, temp, windSpeed, windDirection, desc) {
     outputEl.textContent = "Please wait...";
