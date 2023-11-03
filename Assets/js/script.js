@@ -172,6 +172,10 @@ function createTimestamp () {
     return timestamp;
 }
 
+buttonEl.onclick = function () {
+    window.location.href = "./start.html";
+}
+
 const currentTimestamp = createTimestamp();
 getParametersFromUrl();
 displayPastResponses();
