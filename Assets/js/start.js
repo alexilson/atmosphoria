@@ -3,11 +3,11 @@ function getLocationData() {
     let locationEL = document.getElementById("location");
     let locationValue = locationEL.value.trim();
     console.log(locationValue);
-    
+
     //eror handling to ensure that a valid zip code is being entered and calling a modal upon an error
     const zipCodePattern = /^\d{5}$/;
 
-    if(zipCodePattern.test(locationValue)){
+    if (zipCodePattern.test(locationValue)) {
         return locationValue
     } else {
         showErrorModal("Please enter a valid 5 digit zip code")
@@ -33,16 +33,16 @@ clickButton.addEventListener("click", function () {
     event.preventDefault();
 
     let inputLocation = getLocationData();
-    if (inputLocation !== null){
-    let inputAccent = getSelectedAccent();
-    let urlQuery = `./index.html?q=${inputLocation}&accent=${inputAccent}`; 
-    window.location.href = urlQuery;
+    if (inputLocation !== null) {
+        let inputAccent = getSelectedAccent();
+        let urlQuery = `./index.html?q=${inputLocation}&accent=${inputAccent}`;
+        window.location.href = urlQuery;
     }
 })
 
 
 //dynamically creates a modal that displays when the zip code is invalid
-function showErrorModal(message){
+function showErrorModal(message) {
     const modalContainer = document.getElementById("modalContainer")
     const errorModal = document.createElement("div")
     errorModal.className = "modal"
@@ -59,9 +59,9 @@ function showErrorModal(message){
     errorModal.appendChild(modalContent)
     modalContainer.appendChild(errorModal)
 
-    errorModal.style.display ="block"
+    errorModal.style.display = "block"
 
-    closeBtn.onclick = function(){
+    closeBtn.onclick = function () {
         errorModal.style.display = "none"
     }
 

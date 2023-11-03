@@ -2,7 +2,8 @@ const cart = "c2stN1FwaWZtWDJzZXlscEl6bktreUNUM0JsYmtGSjV4dFlQSWU=";
 const horse = "VzRtb1JMdWhOUWZ0";
 const buttonEl = document.getElementById('get-chat');
 const outputEl = document.getElementById("chatgpt-output");
-const pastResponsesEl = document.getElementById("past-responses")
+const pastResponsesEl = document.getElementById("past-responses");
+const currentTimestampEl = document.getElementById("current-timestamp");
 
 // Code adapted from https://stackoverflow.com/questions/74944407/using-fetch-to-call-the-openai-api-throws-error-400-you-must-provide-a-model-pa
 
@@ -19,16 +20,16 @@ function getWeatherText(personality, city, temp, windSpeed, windDirection, desc)
                 "Content-Type": "application/json",
                 Authorization: "Bearer " + atob(cart) + (4 * 2) + atob(horse)
             },
-                }
+        }
     ).then(function (response) {
         if (response.ok) {
             response.json()
-    .then(function (json) {
-        outputEl.textContent =json.choices[0].message.content;
-        setLocalStorage(json.choices[0].message.content)
-        return json;
-    });
-    }
+                .then(function (json) {
+                    outputEl.textContent = json.choices[0].message.content;
+                    setLocalStorage(json.choices[0].message.content)
+                    return json;
+                });
+        }
     });
 }
 
@@ -65,15 +66,15 @@ function getWeatherFromZip(location, units, accent) {
             console.log('No weather data available')
         }
 
-      })
-      .catch((error) => {
-        console.error('Fetch error:', error);
-      });
- 
+        })
+        .catch((error) => {
+            console.error('Fetch error:', error);
+        });
+
 }
 
 function setLocalStorage(forecastResponse) {
-    
+
     // create response history object in correct scope
     const responseHistory = {}
 
@@ -83,12 +84,12 @@ function setLocalStorage(forecastResponse) {
         const parsedresponseHistory = JSON.parse(pastResponsesLS);
         Object.assign(responseHistory, parsedresponseHistory);  // code from Xpert
     }
-    
+
     // create timestamp of current time
-    const timestamp = dayjs().format('dddd, MMMM D[th], YYYY [at] h[:]mm[:]s a')
+    // const timestamp = dayjs().format('dddd, MMMM D[th], YYYY [at] h[:]mm[:]s a')
 
     // add forecast response with timestamp as the key
-    responseHistory[timestamp] = forecastResponse;
+    responseHistory[currentTimestamp] = forecastResponse;
 
     // convert response object to string
     const updatedResponseHistory = JSON.stringify(responseHistory);
@@ -120,8 +121,11 @@ function displayPastResponses() {
                 const responseTextEl = document.createElement('div');
                 responseTextEl.textContent = responseText;
 
-                responsesEl.append(responseTimeStampEl);
-                responsesEl.append(responseTextEl);
+                const responseContainerEl = document.createElement('div');
+                responseContainerEl.appendChild(responseTimeStampEl);
+                responseContainerEl.appendChild(responseTextEl);
+
+                responsesEl.append(responseContainerEl);
 
                 if (i === startIndex) {
                     break;
@@ -149,14 +153,23 @@ function displayPastResponses() {
 // let accent = accentParam-
 
 // assisted from XPERT Learning Assistant
-function getParametersFromUrl () {
-let urlString = window.location.search;
-let urlParams = new URLSearchParams(urlString);
-let qParam = urlParams.get('q');
-let accentParam = urlParams.get('accent');
-console.log(qParam);
-console.log(accentParam);
-getWeatherFromZip(qParam,'imperial', accentParam)
+function getParametersFromUrl() {
+    let urlString = window.location.search;
+    let urlParams = new URLSearchParams(urlString);
+    let qParam = urlParams.get('q');
+    let accentParam = urlParams.get('accent');
+    console.log(qParam);
+    console.log(accentParam);
+    getWeatherFromZip(qParam, 'imperial', accentParam)
 }
+
+
+function createTimestamp () {
+    const timestamp = dayjs().format('dddd, MMMM D[th], YYYY [at] h[:]mm[:]ss a');
+    currentTimestampEl.textContent = timestamp;
+    return timestamp;
+}
+
+const currentTimestamp = createTimestamp();
 getParametersFromUrl();
 displayPastResponses();
