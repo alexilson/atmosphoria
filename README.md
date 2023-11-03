@@ -1,4 +1,4 @@
-# weather-app
+# Atmosphoria
 
 ## Description
 This weather app is designed to give you your current weather in a fun accent of your choosing.
