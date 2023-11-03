@@ -87,9 +87,6 @@ function setLocalStorage(forecastResponse) {
         Object.assign(responseHistory, parsedresponseHistory);  // code from Xpert
     }
 
-    // create timestamp of current time
-    // const timestamp = dayjs().format('dddd, MMMM D[th], YYYY [at] h[:]mm[:]s a')
-
     // add forecast response with timestamp as the key
     responseHistory[currentTimestamp] = forecastResponse;
 
@@ -150,9 +147,6 @@ function displayPastResponses() {
         }
     }
 };
-
-// let location = qParams
-// let accent = accentParam
 
 // assisted from XPERT Learning Assistant
 function getParametersFromUrl() {
