@@ -1,4 +1,4 @@
-# atmosphoria
+# Atmosphoria
 
 ## Description
 This weather app is designed to give you your current weather in an accent of your choosing and give you a fact about the area. When it returns the results, if applicable, it will also display the previous 5 weather reports.
