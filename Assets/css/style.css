@@ -1,27 +1,50 @@
-body {
-    background: url(https://msfsaddons.com/wp-content/uploads/2022/07/1b.jpg?ezimgfmt=ngcb13/notWebP);
-    background-size:cover ;
-    background-position: center center;
-    background-attachment: fixed;
-    color: #fff;
-    font-family: 'helvetica', sans-serif;
+/* This gives me that panning right effect on the image */
+@keyframes panLeftRight {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    50% {
+        background-position: 100% 0%;
+    }
+
+    100% {
+        background-position: 0% 0%;
+    }
 }
- 
-#get-chat,
-#chatgpt-output,
-#current-timestamp {
-    background: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    padding: 10px;
-    margin: 10px;
+
+/* this applies the panning to the image*/
+.bg-panning-image {
+    animation: panRight 20s linear infinite; 
+}
+
+/* positions the modal */
+.modal{
+    display:none;
+    position: fixed;
+    width: 100%;
+}
+
+/* gives the modal a bit of styling, and centering on the page */
+.modal-content {
+    background-color: white;
+    text-align: center;
+    margin: 15% auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    width: 30%;
     border-radius: 10px;
 }
 
-#past-responses div {
-    margin: 10px;
-    border-radius: 10px;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.7);
-    color: #fff;
-    margin-bottom: 15px;
+/* Moves the position of the close button and gives it some styling */
+.close {
+    margin-top: -15px;
+    font-size: 25px;
+    font-weight: bold;
+    float:right;
+}
+
+.close:hover{
+    cursor: pointer;
 }
