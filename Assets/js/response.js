@@ -120,14 +120,14 @@ function displayPastResponses() {
                 let responseTimestamp = key;
                 let responseText = parsedResponseHistory[key];
 
+                const responseContainerEl = document.createElement('div');
+
                 const responseTimeStampEl = document.createElement('div');
-                responseTimeStampEl.textContent = responseTimestamp;
+                responseTimeStampEl.textContent = responseTimestamp;                
+                responseContainerEl.appendChild(responseTimeStampEl);
 
                 const responseTextEl = document.createElement('div');
                 responseTextEl.textContent = responseText;
-
-                const responseContainerEl = document.createElement('div');
-                responseContainerEl.appendChild(responseTimeStampEl);
                 responseContainerEl.appendChild(responseTextEl);
 
                 responsesEl.append(responseContainerEl);
