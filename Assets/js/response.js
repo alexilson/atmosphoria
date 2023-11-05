@@ -64,7 +64,7 @@ function getWeatherFromZip(location, units, accent) {
 
             getWeatherText(accent, city, temp, windSpeed, windDirection, desc)
 
-            console.log('City: '. city)
+            console.log('City: ', city)
             console.log('Temperature:', temp)
             console.log('Wind Speed', windSpeed)
             console.log('Wind Direction', windDirection)
