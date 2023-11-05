@@ -108,39 +108,18 @@ function displayPastResponses() {
         const pastResponsesLS = localStorage.getItem('pastResponses');
         const parsedResponseHistory = JSON.parse(pastResponsesLS);
         const responsesEl = document.getElementById('past-responses');
-        // assisted from XPERT
+
         const responseKeys = Object.keys(parsedResponseHistory);
         const responseCount = responseKeys.length;
+        const maxResponsesToShow = 5;
 
-        // code from XPERT
-        if (responseCount > 5) {
-            let startIndex = responseCount - 5;
-            for (let i = responseCount - 1; i >= startIndex; --i) {
-                let key = responseKeys[i]
+        for (let i = responseCount - 1; i >= 0; i--) {
+            if (responseCount - i <= maxResponsesToShow) {
+                let key = responseKeys[i];
                 let responseTimestamp = key;
                 let responseText = parsedResponseHistory[key];
 
                 const responseContainerEl = document.createElement('div');
-
-                const responseTimeStampEl = document.createElement('div');
-                responseTimeStampEl.textContent = responseTimestamp;                
-                responseContainerEl.appendChild(responseTimeStampEl);
-
-                const responseTextEl = document.createElement('div');
-                responseTextEl.textContent = responseText;
-                responseContainerEl.appendChild(responseTextEl);
-
-                responsesEl.append(responseContainerEl);
-
-                if (i === startIndex) {
-                    break;
-                }
-            }
-        } else {
-            for (let i = responseCount - 1; i >= 0; i--) { // Iterate over all response keys
-                let key = responseKeys[i];
-                let responseTimestamp = key;
-                let responseText = parsedResponseHistory[key];
 
                 const responseTimeStampEl = document.createElement('div');
                 responseTimeStampEl.textContent = responseTimestamp;
@@ -148,7 +127,10 @@ function displayPastResponses() {
                 const responseTextEl = document.createElement('div');
                 responseTextEl.textContent = responseText;
 
-                responsesEl.prepend(responseTextEl); // Prepend the elements to display the latest response on top
+                responseContainerEl.appendChild(responseTimeStampEl);
+                responseContainerEl.appendChild(responseTextEl);
+
+                responsesEl.appendChild(responseContainerEl);
             }
         }
     }
