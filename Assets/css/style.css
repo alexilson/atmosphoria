@@ -13,6 +13,14 @@
     }
 }
 
+#intro {
+    background: rgba(155, 154, 154, 0.2);
+    /* color: #fff; */
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
 /* this applies the panning to the image*/
 .bg-panning-image {
     animation: panRight 20s linear infinite; 
