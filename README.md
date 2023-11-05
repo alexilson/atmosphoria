@@ -21,6 +21,6 @@ Michael - https://github.com/Carmetlo
 Lizzie - https://github.com/laude-noctis  
 
 ## Link and Screenshot
-Link: 
-![Alt Text](./images/Screenshot-start.png)
-![Alt Text](./images/Screenshot-results.png)
+Link: https://alexilson.github.io/atmosphoria/  
+![Start page with background photo of the world](./images/Screenshot-start.png)  
+![Result page with the weather reports](./images/Screenshot-results.png)  
