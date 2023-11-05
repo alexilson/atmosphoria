@@ -22,5 +22,5 @@ Lizzie - https://github.com/laude-noctis
 
 ## Link and Screenshot
 Link: https://alexilson.github.io/atmosphoria/  
-![Start page with background photo of the world](./images/Screenshot-start.png)  
-![Result page with the weather reports](./images/Screenshot-results.png)  
+![Start page with background photo of the world](./Images/Screenshot-start.png)  
+![Result page with the weather reports](./Images/Screenshot-results.png)  
