@@ -11,10 +11,12 @@ function getWeatherText(personality, city, temp, windSpeed, windDirection, desc)
     outputEl.textContent = "Please wait...";
     fetch(`https://api.openai.com/v1/chat/completions`,
         {
-            body: JSON.stringify({model: "gpt-3.5-turbo", messages: [
-                {role: "system", content: `You are a helpful assistant who speaks like ${personality}.`},
-                {role: "user", content: `Write a weather report for these conditions:City: ${city} temperature: ${temp} wind speed: ${windSpeed} wind direction: ${windDirection} (convert to compass direction, do not say the degrees)  description: ${desc}, and include a fun fact about the city.`}
-                ], temperature: 1}),
+            body: JSON.stringify({
+                model: "gpt-3.5-turbo", messages: [
+                    { role: "system", content: `You are a helpful assistant who speaks like ${personality}.` },
+                    { role: "user", content: `Write a weather report for these conditions:City: ${city} temperature: ${temp} wind speed: ${windSpeed} wind direction: ${windDirection} (convert to compass direction, do not say the degrees)  description: ${desc}, and include a fun fact about the city.` }
+                ], temperature: 1
+            }),
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -35,10 +37,10 @@ function getWeatherText(personality, city, temp, windSpeed, windDirection, desc)
             return;
         }
     })
-    .catch(function (error) {
-        console.error('Fetch error:', error);
-        outputEl.textContent = "Error: " + error;
-    })
+        .catch(function (error) {
+            console.error('Fetch error:', error);
+            outputEl.textContent = "Error: " + error;
+        })
 }
 
 const weatherApiKey = "0342114cc7d6945eec750a7ba15b3f3d"
@@ -47,32 +49,32 @@ function getWeatherFromZip(location, units, accent) {
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?zip=${location},us&appid=${weatherApiKey}&units=${units}`;
 
     fetch(apiUrl)
-    .then((response) => {
-      if (response.status !== 200) {
-        console.error(`Error: ${response.status}`);
-        return;
-      }
-      return response.json();
-    })
-    .then((data) => {
-        if (data){
-            const city = data.name;
-            const temp = data.main.temp;
-            const windSpeed = data.wind.speed;
-            const windDirection = data.wind.deg;
-            const desc = data.weather[0].description
+        .then((response) => {
+            if (response.status !== 200) {
+                console.error(`Error: ${response.status}`);
+                return;
+            }
+            return response.json();
+        })
+        .then((data) => {
+            if (data) {
+                const city = data.name;
+                const temp = data.main.temp;
+                const windSpeed = data.wind.speed;
+                const windDirection = data.wind.deg;
+                const desc = data.weather[0].description
 
-            getWeatherText(accent, city, temp, windSpeed, windDirection, desc)
+                getWeatherText(accent, city, temp, windSpeed, windDirection, desc)
 
-            console.log('City: '. city)
-            console.log('Temperature:', temp)
-            console.log('Wind Speed', windSpeed)
-            console.log('Wind Direction', windDirection)
-            console.log('Description', desc)
-            console.log(data)
-        } else {
-            console.log('No weather data available')
-        }
+                console.log('City: '.city)
+                console.log('Temperature:', temp)
+                console.log('Wind Speed', windSpeed)
+                console.log('Wind Direction', windDirection)
+                console.log('Description', desc)
+                console.log(data)
+            } else {
+                console.log('No weather data available')
+            }
 
         })
         .catch((error) => {
@@ -137,7 +139,7 @@ function displayPastResponses() {
                 }
             }
         } else {
-            for (let i = responseCount - 1; i >= 0; i--) { // Iterate over all response keys
+            for (let i = responseCount - 1; i >= 0; --i) { // Iterate over all response keys
                 let key = responseKeys[i];
                 let responseTimestamp = key;
                 let responseText = parsedResponseHistory[key];
@@ -166,7 +168,7 @@ function getParametersFromUrl() {
 }
 
 
-function createTimestamp () {
+function createTimestamp() {
     const timestamp = dayjs().format('dddd, MMMM D[th], YYYY [at] h[:]mm[:]ss a');
     currentTimestampEl.textContent = timestamp;
     return timestamp;

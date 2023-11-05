@@ -29,7 +29,7 @@ function getSelectedAccent() {
 
 //button that sends the accent and zip code parameters for the creation of the url with error handling to prevent it from working in the event of an error with the zipcode
 let clickButton = document.getElementById("btn")
-clickButton.addEventListener("click", function () {
+clickButton.addEventListener("click", function (event) {
     event.preventDefault();
 
     let inputLocation = getLocationData();
