@@ -4,7 +4,6 @@ body {
     background-size:cover ;
     background-position: center center;
     background-attachment: fixed;
-    color: #fff;
     font-family: 'helvetica', sans-serif;
 }
 
@@ -35,19 +34,19 @@ body {
 /* positions the modal */
 .modal{
     display:none;
-    position: fixed;
-    width: 100%;
+    /* position: flex; */
+    /* width: 100%; */
 }
 
 /* gives the modal a bit of styling, and centering on the page */
 .modal-content {
     background-color: white;
     text-align: center;
-    margin: 15% auto;
+    margin:auto;
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
-    width: 30%;
+    /* width: 30%; */
     border-radius: 10px;
 }
 
