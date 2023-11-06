@@ -52,3 +52,13 @@
 .close:hover{
     cursor: pointer;
 }
+
+@media (max-height: 760px) {
+    h1 {
+        font-size: 1rem; /* Adjust the font size as needed */
+    }
+
+    p {
+        font-size: .75rem; /* Adjust the font size as needed */
+    }
+}
