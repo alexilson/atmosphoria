@@ -10,13 +10,12 @@
     <title>Atmosphoria</title>
 </head>
 
-<body class="h-screen flex items-center justify-center">
+<body class="h-screen flex flex-col justify-center bg-panning-image">
     <!--H screen selects the height to fill up the entire screen, flex is used to create a container, items-center aligns them to the center of the page vertically -->
     <!--This is also where we initiate the image to pan both left and right and absolute inset -0 positions the image completely in the center to get the best effect out of the pan -->
-    <div class="bg-fixed bg-center bg-cover bg-no-repeat bg-panning-image absolute inset-0"
-        style="background-image: url(https://cdn.pixabay.com/photo/2016/10/20/18/35/earth-1756274_1280.jpg);">
+    <div class="flex flex-grow shrink-0 bg-center bg-cover bg-no-repeat bg-panning-image absolute inset-0">
         <!--this flexes the body elements to the center for a polished look-->
-        <div class="flex flex-col items-center">
+        <div class="flex flex-col items-center flex-grow shrink-1">
             <!--Main app title, just added structure to font-->
             <h1 class="text-4xl text-blue-800 font-bold mb-4 text-center">Welcome to Atmosphoria!</h1>
             <div class="flex flex-col items-center text-l text-blue-400 font-bold mb-1 text-center" id="intro">
