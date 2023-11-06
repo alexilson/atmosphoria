@@ -166,20 +166,29 @@ function displayPastResponses() {
 };
 
 // assisted from XPERT Learning Assistant
+// gets parameters from the URL passed from the start page
 function getParametersFromUrl() {
-    let urlString = window.location.search;
-    let urlParams = new URLSearchParams(urlString);
+
+    // grabs the search query from the window object
+    let urlString = window.location.search;  
+
+    // creates an instance of URLSearchParams from the query
+    let urlParams = new URLSearchParams(urlString);  
+
+    // gets the "q" parameter which will be the zip code
     let qParam = urlParams.get('q');
+
+    // gets the "accent" parameter
     let accentParam = urlParams.get('accent');
-    console.log(qParam);
-    console.log(accentParam);
-    getWeatherFromZip(qParam, 'imperial', accentParam)
+
+    // sends the parameters to the weather API and includes the accent to be passed to the chatgpt function later
+    getWeatherFromZip(qParam, 'imperial', accentParam);
 }
 
 //function to create timestamp to be used in the responses
 function createTimestamp () {
     const timestamp = dayjs().format('dddd, MMMM D[th], YYYY [at] h[:]mm[:]ss a');
-    currentTimestampEl.textContent = timestamp;
+    currentTimestampEl.textContent = timestamp;  // displays timestamp on page
     return timestamp;
 }
 
