@@ -1,3 +1,4 @@
+/* Main body styling, establishes font, etc. */
 body {
     background: url(https://msfsaddons.com/wp-content/uploads/2022/07/1b.jpg?ezimgfmt=ngcb13/notWebP);
     background-size:cover ;
@@ -6,7 +7,7 @@ body {
     color: #fff;
     font-family: 'helvetica', sans-serif;
 }
- 
+ /* sets up background for text bubbles, establishes padding and margin */
 #get-chat,
 #chatgpt-output,
 #current-timestamp {
@@ -16,7 +17,7 @@ body {
     margin: 10px;
     border-radius: 10px;
 }
-
+/* sets up the styling for the past responses */
 #past-responses div {
     margin: 10px;
     border-radius: 10px;
