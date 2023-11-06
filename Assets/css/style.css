@@ -1,6 +1,4 @@
 /* This gives me that panning right effect on the image */
-
-
 @keyframes panning {
     0% {
         background-position: 0% 0%;
