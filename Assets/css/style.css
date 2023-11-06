@@ -6,7 +6,7 @@ body {
     background-attachment: fixed;
     font-family: 'helvetica', sans-serif;
 }
-
+/* This is the panning image function */
 @keyframes panning {
     0% {
         background-position: 0% 0%;
@@ -17,11 +17,11 @@ body {
     }
 
 }
-
+/* Make sure to keep this connect with above^ */
 .bg-panning-image {
     animation: panning 20s linear infinite;
 }
-
+/* Styling intro */
 #intro {
     background: rgba(155, 154, 154, 0.2);
     padding: 10px;
@@ -42,7 +42,6 @@ body {
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
-    /* width: 30%; */
     border-radius: 10px;
 }
 
@@ -57,7 +56,7 @@ body {
 .close:hover{
     cursor: pointer;
 }
-
+/* Adjusts automatically for small screens */
 @media (max-height: 760px) {
     h1 {
         font-size: 1rem; /* Adjust the font size as needed */
