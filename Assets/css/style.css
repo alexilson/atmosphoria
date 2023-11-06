@@ -24,7 +24,6 @@ body {
 
 #intro {
     background: rgba(155, 154, 154, 0.2);
-    /* color: #fff; */
     padding: 10px;
     margin: 10px;
     border-radius: 10px;
@@ -33,20 +32,17 @@ body {
 
 /* positions the modal */
 .modal{
-    display:none;
-    position: fixed;
-    width: 100%;
+    display:none; 
 }
 
 /* gives the modal a bit of styling, and centering on the page */
 .modal-content {
     background-color: white;
     text-align: center;
-    margin: 15% auto;
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
-    width: 30%;
+    width: 100%;
     border-radius: 10px;
 }
 
