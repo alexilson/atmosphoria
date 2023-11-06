@@ -43,27 +43,38 @@ function getWeatherText(personality, city, temp, windSpeed, windDirection, desc)
 
 const weatherApiKey = "0342114cc7d6945eec750a7ba15b3f3d"
 
+
 function getWeatherFromZip(location, units, accent) {
+    //creates the url to be sent to the weather api based on the parameters
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?zip=${location},us&appid=${weatherApiKey}&units=${units}`;
 
+    //makes a GET request to the API
     fetch(apiUrl)
-    .then((response) => {
-      if (response.status !== 200) {
-        console.error(`Error: ${response.status}`);
-        return;
-      }
-      return response.json();
+        .then((response) => {
+        //checks if the response is ok
+            if (response.status !== 200) {
+                //log error in console and then stops
+                console.error(`Error: ${response.status}`);
+                return;
+            }
+        
+        //if response is good, parse the JSON
+        return response.json();
     })
     .then((data) => {
         if (data){
+
+            //get relevant data from the JSON
             const city = data.name;
             const temp = data.main.temp;
             const windSpeed = data.wind.speed;
             const windDirection = data.wind.deg;
             const desc = data.weather[0].description
 
+            //calls the function getWeatherText with the relevant data, as well as the accent
             getWeatherText(accent, city, temp, windSpeed, windDirection, desc)
 
+            //console logs the relevant data
             console.log('City: ', city)
             console.log('Temperature:', temp)
             console.log('Wind Speed', windSpeed)
@@ -71,11 +82,13 @@ function getWeatherFromZip(location, units, accent) {
             console.log('Description', desc)
             console.log(data)
         } else {
+            //log message if there is no data
             console.log('No weather data available')
         }
 
         })
         .catch((error) => {
+            //catch and log fetch errors
             console.error('Fetch error:', error);
         });
 
@@ -103,30 +116,43 @@ function setLocalStorage(forecastResponse) {
     localStorage.setItem('pastResponses', updatedResponseHistory);
 }
 
+//function to display and limit the amount of previous responses provided by the application
 function displayPastResponses() {
+    //checks if there are past responses
     if (localStorage.getItem('pastResponses')) {
+        //gets the past responses from local storage and parses them into an object
         const pastResponsesLS = localStorage.getItem('pastResponses');
         const parsedResponseHistory = JSON.parse(pastResponsesLS);
+        //references the html element where the responses will be displayed
         const responsesEl = document.getElementById('past-responses');
 
+        //Gets the timestamps for the previous responses
         const responseKeys = Object.keys(parsedResponseHistory);
+        //determines how many responses there are available, and defines the maximum responses to be displayed
         const responseCount = responseKeys.length;
         const maxResponsesToShow = 5;
 
+        //loops through the responses in reverse order
         for (let i = responseCount - 1; i >= 0; i--) {
+            //checks to make sure the response is within the alloted amount
             if (responseCount - i <= maxResponsesToShow) {
+                //grabs the timestamp and text from each iteration
                 let key = responseKeys[i];
                 let responseTimestamp = key;
                 let responseText = parsedResponseHistory[key];
 
+                //dynamically creates the container
                 const responseContainerEl = document.createElement('div');
 
+                //dynamically creates the timestamp element
                 const responseTimeStampEl = document.createElement('div');
                 responseTimeStampEl.textContent = responseTimestamp;
 
+                //dynamically creates the response element
                 const responseTextEl = document.createElement('div');
                 responseTextEl.textContent = responseText;
 
+                //appends all of the elements and then appends the container
                 responseContainerEl.appendChild(responseTimeStampEl);
                 responseContainerEl.appendChild(responseTextEl);
 
@@ -147,13 +173,14 @@ function getParametersFromUrl() {
     getWeatherFromZip(qParam, 'imperial', accentParam)
 }
 
-
+//function to create timestamp to be used in the responses
 function createTimestamp () {
     const timestamp = dayjs().format('dddd, MMMM D[th], YYYY [at] h[:]mm[:]ss a');
     currentTimestampEl.textContent = timestamp;
     return timestamp;
 }
 
+//button to switch pages back to the first landing page
 buttonEl.onclick = function () {
     window.location.href = "./index.html";
 }
