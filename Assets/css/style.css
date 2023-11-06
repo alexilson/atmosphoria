@@ -1,14 +1,24 @@
 /* This gives me that panning right effect on the image */
+body {
+    background: url(https://cdn.pixabay.com/photo/2016/10/20/18/35/earth-1756274_1280.jpg);
+    background-size:cover ;
+    background-position: center center;
+    background-attachment: fixed;
+    color: #fff;
+    font-family: 'helvetica', sans-serif;
+}
+
 @keyframes panning {
     0% {
         background-position: 0% 0%;
     }
 
-    50% {
+    100% {
         background-position: 100% 0%;
     }
 
 }
+
 .bg-panning-image {
     animation: panning 20s linear infinite;
 }
