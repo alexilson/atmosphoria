@@ -28,7 +28,7 @@
             <div>
                 <label for="accent" class="text-blue-600 text-2xl block font-semibold">Choose an accent</label>
                 <!--this is where i format the selection box, main functions here were rounding the edges and creating a border-->
-                <select id="accent" name="accent" class="p-4 px-1border rounded-md focus:outline-none justify-center">
+                <select id="accent" name="accent" class="p-4 px-1border rounded-md focus:outline-none justify-center items-center">
                     <option value="A Pirate">A Pirate</option>
                     <option value="A Texan">A Texan</option>
                     <option value="A New Yorker">A New Yorker</option>
@@ -51,11 +51,10 @@
                 <!--This is the styling for the button, added bold and removed detail outline when clicked-->
                 <button id="btn" class="text-blue-800 text-2xl font-bold focus:outline-none">Click here</button>
             </div>
+            <div class="flex flex-col items-center">
+                <!-- div for the modal -->
+                <div id="modalContainer" class="font-xs w-full p-4 mx-auto"></div>
             </div>
-         <div class="flex flex-col items-center">
-            <!-- div for the modal -->
-            <div id="modalContainer" class="font-xs w-full p-4 mx-auto"></div>
-        </div>
         </div>
     </div>
     <script src="./Assets/js/script.js"></script>
