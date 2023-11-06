@@ -16,9 +16,6 @@ function getLocationData() {
     }
 }
 
-document.getElementById("startForm").addEventListener("submit", function (event) {
-    event.preventDefault();
-});
 
 //function to get the accent to be returned in a variable that can be turned into a paramater for the url
 function getSelectedAccent() {
