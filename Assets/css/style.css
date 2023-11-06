@@ -1,5 +1,5 @@
 /* This gives me that panning right effect on the image */
-@keyframes panLeftRight {
+@keyframes panning {
     0% {
         background-position: 0% 0%;
     }
@@ -8,9 +8,9 @@
         background-position: 100% 0%;
     }
 
-    100% {
-        background-position: 0% 0%;
-    }
+}
+.bg-panning-image {
+    animation: panning 20s linear infinite;
 }
 
 #intro {
@@ -21,10 +21,6 @@
     border-radius: 10px;
 }
 
-/* this applies the panning to the image*/
-.bg-panning-image {
-    animation: panRight 20s linear infinite; 
-}
 
 /* positions the modal */
 .modal{
