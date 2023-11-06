@@ -1,43 +1,46 @@
-const cart = "c2stN1FwaWZtWDJzZXlscEl6bktreUNUM0JsYmtGSjV4dFlQSWU=";
-const horse = "VzRtb1JMdWhOUWZ0";
+const cart = "c2stN1FwaWZtWDJzZXlscEl6bktreUNUM0JsYmtGSjV4dFlQSWU="; // key part 1
+const horse = "VzRtb1JMdWhOUWZ0"; // key part 2
 const buttonEl = document.getElementById('get-chat');
 const outputEl = document.getElementById("chatgpt-output");
 const pastResponsesEl = document.getElementById("past-responses");
 const currentTimestampEl = document.getElementById("current-timestamp");
 
 // Code adapted from https://stackoverflow.com/questions/74944407/using-fetch-to-call-the-openai-api-throws-error-400-you-must-provide-a-model-pa
-
+// Function that takes in personality from user selection on previous page and weather data from the weather api and updates the output html element
+// with the returned text weather forecast. Also adds response to local storage. Will output error to the output element if a bad response is returned.
 function getWeatherText(personality, city, temp, windSpeed, windDirection, desc) {
+    // Displays a loading message on the page
     outputEl.textContent = "Please wait...";
     fetch(`https://api.openai.com/v1/chat/completions`,
         {
             body: JSON.stringify({model: "gpt-3.5-turbo", messages: [
+                // instruction to chatgpt so it adopts the user's selected accent
                 {role: "system", content: `You are a helpful assistant who speaks like ${personality}.`},
+                // prompt for the weather forecast with the conditions, includes instruction for a fun fact of the location and to convert wind speed degrees to compass direction
                 {role: "user", content: `Write a weather report for these conditions:City: ${city} temperature: ${temp} wind speed: ${windSpeed} wind direction: ${windDirection} (convert to compass direction, do not say the degrees)  description: ${desc}, and include a fun fact about the city.`}
-                ], temperature: 1}),
+                ], temperature: 1}), // temperature parameter controls how randomized the answer is
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                Authorization: "Bearer " + atob(cart) + (4 * 2) + atob(horse)
+                Authorization: "Bearer " + atob(cart) + (4 * 2) + atob(horse) // API Key is stored in base64 and split up, then converted back and combined here
             },
         }
     ).then(function (response) {
-        if (response.ok) {
+        if (response.ok) {  // if response is good
             response.json()
                 .then(function (json) {
-                    outputEl.textContent = json.choices[0].message.content;
-                    setLocalStorage(json.choices[0].message.content)
+                    outputEl.textContent = json.choices[0].message.content;  // outputs the weather forecast text to the output element
+                    setLocalStorage(json.choices[0].message.content)  // adds the forecast to the history stored in local storage
                     return json;
                 });
         }
         else {
-            console.error(`Error: ${response.status}`);
+            console.error(`Error: ${response.status}`);  // outputs error to console
             return;
         }
     })
     .catch(function (error) {
-        console.error('Fetch error:', error);
-        outputEl.textContent = "Error: " + error;
+        outputEl.textContent = "Error: " + error; // outputs error to output element to display to user
     })
 }
 
